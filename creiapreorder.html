@@ -522,146 +522,130 @@
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
             color: var(--slate-grey);
-            justify-content: flex-start;
-            padding-top: 120px;
-            /* Increased to account for taller nav */
+            text-transform: uppercase;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 12vw, 4rem);
-            margin-bottom: 0.5rem;
-        }
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                height: auto;
+                min-height: 100vh;
+                justify-content: flex-start;
+                padding-top: 100px;
+            }
 
-        .hero-img-container {
-            width: 85%;
-            height: auto;
-            max-width: 380px;
-            margin-bottom: 1rem;
-        }
+            .hero h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin-bottom: 0.5rem;
+            }
 
-        .hero-btn {
-            margin-bottom: 2rem;
-        }
+            .hero-img-container {
+                width: 85%;
+                height: auto;
+                max-width: 380px;
+                margin-bottom: 1rem;
+            }
 
-        /* Stack the benefits menu on mobile */
-        .menu-content {
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            width: 100%;
-            overflow: visible;
-        }
+            .hero-btn {
+                margin-bottom: 2rem;
+            }
 
-        #creatine-menu {
-            justify-content: flex-start;
-            padding-top: 60px;
-            overflow-y: scroll;
-            height: 100vh;
-            height: 100dvh;
-            padding-bottom: 120px;
-        }
+            /* Stack the benefits menu on mobile */
+            .menu-content {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 1rem;
+                /* Allow scrolling within menu area */
+                width: 100%;
+                overflow: visible;
+                /* Let parent handle scroll */
+            }
 
-        .benefit-card {
-            padding: 1rem;
-        }
+            #creatine-menu {
+                justify-content: flex-start;
+                padding-top: 60px;
+                overflow-y: scroll;
+                /* Force vertical scroll */
+                height: 100vh;
+                /* Full viewport height */
+                padding-bottom: 100px;
+                /* Extra space at bottom */
+            }
 
-        .benefit-title {
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
+            /* Hide the duplicate button in menu on mobile if it takes too much space,
+               or keep it but ensure scrolling. Keeping it for now. */
+            .benefit-card {
+                padding: 1.5rem;
+            }
 
-        .benefit-desc {
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
+            .benefit-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
 
-        .close-btn {
-            margin-top: 1rem;
-            margin-bottom: 4rem;
-        }
+            .close-btn {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                /* Ensure it's not at the very edge */
+            }
 
-        /* Marquee Scaling */
-        .marquee-container {
-            padding: 0.8rem 0;
-            font-size: 0.8rem;
-        }
+            /* Fix Footer and Scrolling */
+            .bottom-spacer {
+                display: none;
+                /* Remove spacer on mobile to reduce scroll */
+            }
 
-        .marquee-content span {
-            margin-right: 2rem;
-        }
+            .hero-gradient {
+                display: none;
+                /* Simplify on mobile */
+            }
 
-        /* Fix Footer and Gradient Robustly */
-        .bottom-spacer,
-        .hero-gradient {
-            display: none !important;
-            /* Hide independent elements */
-        }
+            footer {
+                height: auto;
+                padding: 2rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
 
-        footer {
-            height: auto;
-            min-height: 200px;
-            padding: 2rem 1rem;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-            text-align: left;
-            position: relative;
-            z-index: 10;
-            background-color: var(--white);
-            /* Ensure opacity for gradient fade */
-            margin-top: 100px;
-            /* Ensure space for gradient */
-        }
+            .footer-logo {
+                font-size: 18vw;
+                margin-bottom: 1rem;
+                line-height: 1;
+            }
 
-        /* Attach gradient to footer directly */
-        footer::before {
-            content: "";
-            position: absolute;
-            top: -150px;
-            left: 0;
-            width: 100%;
-            height: 151px;
-            /* 1px overlap */
-            background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
-            pointer-events: none;
-            z-index: -1;
-        }
+            .footer-links {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                text-align: center;
+                margin-top: 1rem;
+            }
 
-        .footer-logo {
-            font-size: 20vw;
-            margin-bottom: -2vw;
-            line-height: 1;
-        }
+            .footer-links a {
+                text-align: center;
+            }
 
-        .footer-links {
-            position: absolute;
-            right: 1rem;
-            bottom: 2rem;
-            transform: none;
-            text-align: right;
-        }
+            nav {
+                padding: 1rem;
+            }
 
-        .footer-links a {
-            display: block;
-            text-align: right;
-            font-size: 0.8rem;
-        }
+            .logo {
+                font-size: 1.5rem;
+            }
 
-        .logo {
-            font-size: 1.5rem;
-        }
+            .preorder-section {
+                grid-template-columns: 1fr;
+            }
 
-        .preorder-section {
-            display: none;
-        }
+            .product-visual {
+                height: 50vh;
+            }
 
-        .product-visual {
-            height: 50vh;
-        }
-
-        .product-details {
-            padding: 2rem;
-        }
+            .product-details {
+                padding: 2rem;
+            }
         }
 
         /* --- BENEFITS SECTION --- */
