@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creia creatine | cold therapy for your cells</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
+        :root {
+            --icy-blue: #DEEAF7;
+            --slate-grey: #5C7084;
+            --chrome: #E0E0E0;
+            --charcoal: #1A1F23;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
+            /* Adds texture */
+        }
+
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background-color: var(--icy-blue);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            background: transparent;
+            color: var(--charcoal);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Fixed background to prevent jitter */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('rime-bg.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.2;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Adds a subtle film grain texture over the whole site */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--grain-overlay);
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.04em;
+            font-weight: 600;
+            line-height: 0.9;
+        }
+
+        .swiss-mono {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--slate-grey);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            mix-blend-mode: normal;
+            color: var(--charcoal);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .cart {
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cart:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .hero-btn {
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .bottom-spacer {
+            height: 30vh;
+            width: 100%;
+            position: relative;
+            background: transparent;
+        }
+
+        .nav-btn {
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        #creatine-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(222, 234, 247, 0.70);
+            /* 70% opacity */
+
+            /* Transition state: Hidden */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+
+            display: flex;
+            /* Always flex layout, just toggling opacity */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        #creatine-menu.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .close-btn {
+            z-index: 20;
+            margin-top: 3rem;
+            /* Inherits .nav-btn styles */
+        }
+
+        .menu-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            padding: 2rem;
+            width: 90%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: transparent;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-img-container {
+            width: 495px;
+            height: auto;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 8.1vw, 6.5rem);
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--slate-grey);
+            max-width: 400px;
+            margin-bottom: 2rem;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--charcoal);
+            padding: 1.2rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        .marquee-content span {
+            margin-right: 4rem;
+            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- PRE-ORDER SECTION --- */
+        .preorder-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .product-visual {
+            background: linear-gradient(135deg, #E8EFF5 0%, #F5F9FC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Simulating a "Girl Fridge" photo */
+        .product-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mix-blend-mode: normal;
+        }
+
+        .placeholder-visual {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .placeholder-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-details {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .status-pill {
+            display: inline-block;
+            background: var(--icy-blue);
+            color: var(--slate-grey);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            width: fit-content;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            color: var(--slate-grey);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .variant-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .variant-btn {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: left;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .variant-btn:hover,
+        .variant-btn.active {
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .variant-name {
+            font-weight: bold;
+            display: block;
+        }
+
+        .variant-price {
+            font-size: 0.8rem;
+            color: var(--slate-grey);
+        }
+
+        .cta-btn {
+            background: rgba(26, 31, 35, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .cta-btn:hover {
+            background: rgba(26, 31, 35, 0.95);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .waitlist-note {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--slate-grey);
+            text-align: center;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem 2rem 0;
+            background-color: var(--white);
+            /* border-top: 1px solid var(--chrome); */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            overflow: hidden;
+            position: relative;
+            height: 35vh;
+        }
+
+        .footer-logo {
+            font-size: 35vh;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            color: var(--icy-blue);
+            line-height: 0.75;
+            margin-bottom: -5vh;
+        }
+
+        .footer-links {
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+            top: auto;
+            transform: none;
+        }
+
+        .footer-links a {
+            display: block;
+            text-align: right;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--slate-grey);
+            text-transform: uppercase;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                height: auto;
+                min-height: 100vh;
+                justify-content: flex-start;
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-img-container {
+                width: 85%;
+                height: auto;
+                max-width: 380px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-btn {
+                margin-bottom: 2rem;
+            }
+
+            /* Stack the benefits menu on mobile */
+            .menu-content {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 1rem;
+                /* Allow scrolling within menu area */
+                width: 100%;
+                overflow: visible;
+                /* Let parent handle scroll */
+            }
+
+            #creatine-menu {
+                justify-content: flex-start;
+                padding-top: 60px;
+                overflow-y: scroll;
+                /* Force vertical scroll */
+                height: 100vh;
+                /* Full viewport height */
+                padding-bottom: 100px;
+                /* Extra space at bottom */
+            }
+
+            /* Hide the duplicate button in menu on mobile if it takes too much space,
+               or keep it but ensure scrolling. Keeping it for now. */
+            .benefit-card {
+                padding: 1.5rem;
+            }
+
+            .benefit-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .close-btn {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                /* Ensure it's not at the very edge */
+            }
+
+            /* Fix Footer and Scrolling */
+            .bottom-spacer {
+                display: none;
+                /* Remove spacer on mobile to reduce scroll */
+            }
+
+            .hero-gradient {
+                display: none;
+                /* Simplify on mobile */
+            }
+
+            footer {
+                height: auto;
+                padding: 2rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .footer-logo {
+                font-size: 18vw;
+                margin-bottom: 1rem;
+                line-height: 1;
+            }
+
+            .footer-links {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .footer-links a {
+                text-align: center;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .preorder-section {
+                grid-template-columns: 1fr;
+            }
+
+            .product-visual {
+                height: 50vh;
+            }
+
+            .product-details {
+                padding: 2rem;
+            }
+        }
+
+        /* --- BENEFITS SECTION --- */
+        .benefits-section {
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .benefit-desc {
+            font-size: 0.95rem;
+            color: var(--slate-grey);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">c.</div>
+        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
+    </nav>
+
+    <div id="creatine-menu" onclick="toggleMenu()">
+        <!-- Scrolling Marquee (Moved to Top) -->
+        <div class="marquee-container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10;">
+            <div class="marquee-content">
+                <span>CLEAN FORMULATION</span>
+                <span>NO PRESERVATIVES</span>
+                <span>100% CREATINE</span>
+                <span>MENTAL CLARITY</span>
+                <span>WELLNESS FRIDGE ESSENTIAL</span>
+                <span>FORMULATED FOR LONGEVITY</span>
+                <span>ENHANCED MENTAL CLARITY</span>
+                <span>INCREASED ENERGY</span>
+                <span>BETTER SLEEP</span>
+                <span>REDUCES BRAIN FOG</span>
+                <span>IMPROVED CONCENTRATION</span>
+                <span>REDUCES STRESS</span>
+                <span>IMPROVED MOOD</span>
+                <span>REDUCES PMS</span>
+            </div>
+        </div>
+
+
+
+        <div class="menu-content" onclick="event.stopPropagation()">
+            <div class="benefit-card">
+                <h3 class="benefit-title">Brain Power</h3>
+                <p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and focus,
+                    especially when stress or
+                    lack
+                    of sleep tries to slow you down.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Cycle Sync</h3>
+                <p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when hormones
+                    fluctuate, so you stay balanced all month.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Clean Energy</h3>
+                <p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for
+                    sustained power that
+                    outlasts your morning coffee.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Lean Definition</h3>
+                <p class="benefit-desc">Sculpt, don't bulk. creia helps accelerate recovery and maintain the lean muscle
+                    that
+                    keeps
+                    you feeling strong and capable.</p>
+            </div>
+        </div>
+
+        <!-- Duplicate Pre-Order Button -->
+        <div class="hero-btn" style="margin-top: 3rem;">pre-orders open 12.25</div>
+
+        <!-- Close Button (Moved to Bottom) -->
+        <div class="nav-btn close-btn" onclick="toggleMenu(); event.stopPropagation()">X</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="swiss-mono">EST. 2025 &mdash; LONDON</div>
+        <br>
+        <div class="hero-img-container">
+            <img src="creia-hero-vertical.png" alt="Creia Sachets"
+                style="width: 65%; height: auto; display: block; margin: 36px auto 54px;">
+        </div>
+        <div class="hero-btn">pre-orders open 12.25</div>
+        <h1>DEFROST YOUR<br>POTENTIAL.</h1>
+        <p>creia's micronised creatine monohydrate <br>is refined for clarity, not just mass.</p>
+    </section>
+
+    <div class="bottom-spacer">
+        <div class="hero-gradient"></div>
+    </div>
+
+    <!-- Scrolling Marquee Removed (Moved to Menu) -->
+
+    <!-- Pre-Order Module -->
+    <!-- Pre-Order Module Removed -->
+    <!-- <section class="preorder-section"> ... </section> -->
+
+    <!-- Benefits Section Removed (Moved to Menu) -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">creia</div>
+        <div class="footer-links">
+            <a href="mailto:info@getcreia.com">Contact</a>
+        </div>
+    </footer>
+
+    <!-- Simple Script for Interaction -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('creatine-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
