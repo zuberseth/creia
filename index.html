@@ -529,25 +529,36 @@
         @media (max-width: 768px) {
 
             /* STABILIZE MOBILE SCROLL AND BACKGROUND */
-            body::after,
-            body::before {
-                /* On mobile, use absolute instead of fixed for better scroll performance 
-                   and to prevent address bar jitter. */
-                height: 100vh;
-                /* Fallback */
-                height: 100dvh;
+            /* Disable the fixed pseudo-element on mobile to stop jitter */
+            body::after {
+                display: none;
+            }
+
+            /* Apply background directly to body, scrolling naturally */
+            body {
+                background: url('rime-bg.png') no-repeat center top;
+                background-size: cover;
                 background-attachment: scroll;
-                /* Fixes iOS fixed bg jitter */
+                min-height: 100vh;
+                /* Ensure no overflow issues */
+                overflow-x: hidden;
+            }
+
+            /* Fix nav jitter on scroll by forcing hardware accel */
+            nav {
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                padding: 1rem;
             }
 
             .hero {
                 padding: 1rem;
                 height: auto;
-                min-height: 100vh;
-                min-height: 100dvh;
+                min-height: 90vh;
+                /* slightly less than full to encourage scroll */
                 justify-content: flex-start;
                 padding-top: 100px;
-                background-attachment: scroll;
+                /* No background attachment here, body handles it */
             }
 
             .hero h1 {
@@ -569,80 +580,88 @@
             /* Stack the benefits menu on mobile */
             .menu-content {
                 grid-template-columns: 1fr;
-                gap: 0.8rem;
-                padding: 1rem;
-                /* Allow scrolling within menu area */
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
                 width: 100%;
                 overflow: visible;
-                /* Let parent handle scroll */
             }
 
             #creatine-menu {
                 justify-content: flex-start;
                 padding-top: 60px;
                 overflow-y: scroll;
-                /* Force vertical scroll */
                 height: 100vh;
                 height: 100dvh;
-                /* Full viewport height */
-                padding-bottom: 100px;
-                /* Extra space at bottom */
+                padding-bottom: 120px;
             }
 
-            /* Hide the duplicate button in menu on mobile if it takes too much space,
-               or keep it but ensure scrolling. Keeping it for now. */
             .benefit-card {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .benefit-title {
-                font-size: 1rem;
-                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .benefit-desc {
+                font-size: 0.85rem;
+                line-height: 1.4;
             }
 
             .close-btn {
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-                /* Ensure it's not at the very edge */
+                margin-top: 1rem;
+                margin-bottom: 4rem;
             }
 
-            /* Fix Gradient on Mobile */
-            /* We need the spacer to go away to save space, but want the gradient */
-            .bottom-spacer {
-                display: none;
+            /* Marquee Scaling */
+            .marquee-container {
+                padding: 0.8rem 0;
+                font-size: 0.8rem;
             }
 
-            /* Re-introduce the gradient specifically for mobile attached to body or main wrapper relative position */
-            /* Since .hero-gradient was absolute to .bottom-spacer (which is gone), 
-               we must target it and position it relative to the viewport or new container */
+            .marquee-content span {
+                margin-right: 2rem;
+            }
 
+            /* Fix Footer and Gradient Robustly */
+            .bottom-spacer,
             .hero-gradient {
-                display: block;
-                position: relative;
-                margin-top: -150px;
-                /* Pull it up into the content stream */
-                height: 200px;
-                z-index: 1;
-                pointer-events: none;
-                bottom: auto;
+                display: none !important;
+                /* Hide independent elements */
             }
 
             footer {
                 height: auto;
                 min-height: 200px;
                 padding: 2rem 1rem;
-                /* Restore flex row for "scaled down desktop" look */
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: flex-end;
                 text-align: left;
                 position: relative;
-                z-index: 2;
-                /* Above gradient */
+                z-index: 10;
+                background-color: var(--white);
+                /* Ensure opacity for gradient fade */
+                margin-top: 100px;
+                /* Ensure space for gradient */
+            }
+
+            /* Attach gradient to footer directly */
+            footer::before {
+                content: "";
+                position: absolute;
+                top: -150px;
+                left: 0;
+                width: 100%;
+                height: 151px;
+                /* 1px overlap */
+                background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+                pointer-events: none;
+                z-index: -1;
             }
 
             .footer-logo {
-                /* Scale down significantly */
                 font-size: 20vw;
                 margin-bottom: -2vw;
                 line-height: 1;
@@ -660,10 +679,6 @@
                 display: block;
                 text-align: right;
                 font-size: 0.8rem;
-            }
-
-            nav {
-                padding: 1rem;
             }
 
             .logo {
