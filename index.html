@@ -527,12 +527,27 @@
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
+
+            /* STABILIZE MOBILE SCROLL AND BACKGROUND */
+            body::after,
+            body::before {
+                /* On mobile, use absolute instead of fixed for better scroll performance 
+                   and to prevent address bar jitter. */
+                height: 100vh;
+                /* Fallback */
+                height: 100dvh;
+                background-attachment: scroll;
+                /* Fixes iOS fixed bg jitter */
+            }
+
             .hero {
                 padding: 1rem;
                 height: auto;
                 min-height: 100vh;
+                min-height: 100dvh;
                 justify-content: flex-start;
                 padding-top: 100px;
+                background-attachment: scroll;
             }
 
             .hero h1 {
@@ -568,6 +583,7 @@
                 overflow-y: scroll;
                 /* Force vertical scroll */
                 height: 100vh;
+                height: 100dvh;
                 /* Full viewport height */
                 padding-bottom: 100px;
                 /* Extra space at bottom */
@@ -590,41 +606,60 @@
                 /* Ensure it's not at the very edge */
             }
 
-            /* Fix Footer and Scrolling */
+            /* Fix Gradient on Mobile */
+            /* We need the spacer to go away to save space, but want the gradient */
             .bottom-spacer {
                 display: none;
-                /* Remove spacer on mobile to reduce scroll */
             }
 
+            /* Re-introduce the gradient specifically for mobile attached to body or main wrapper relative position */
+            /* Since .hero-gradient was absolute to .bottom-spacer (which is gone), 
+               we must target it and position it relative to the viewport or new container */
+
             .hero-gradient {
-                display: none;
-                /* Simplify on mobile */
+                display: block;
+                position: relative;
+                margin-top: -150px;
+                /* Pull it up into the content stream */
+                height: 200px;
+                z-index: 1;
+                pointer-events: none;
+                bottom: auto;
             }
 
             footer {
                 height: auto;
-                padding: 2rem;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                min-height: 200px;
+                padding: 2rem 1rem;
+                /* Restore flex row for "scaled down desktop" look */
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                text-align: left;
+                position: relative;
+                z-index: 2;
+                /* Above gradient */
             }
 
             .footer-logo {
-                font-size: 18vw;
-                margin-bottom: 1rem;
+                /* Scale down significantly */
+                font-size: 20vw;
+                margin-bottom: -2vw;
                 line-height: 1;
             }
 
             .footer-links {
-                position: relative;
-                right: auto;
-                bottom: auto;
-                text-align: center;
-                margin-top: 1rem;
+                position: absolute;
+                right: 1rem;
+                bottom: 2rem;
+                transform: none;
+                text-align: right;
             }
 
             .footer-links a {
-                text-align: center;
+                display: block;
+                text-align: right;
+                font-size: 0.8rem;
             }
 
             nav {
@@ -636,7 +671,7 @@
             }
 
             .preorder-section {
-                grid-template-columns: 1fr;
+                display: none;
             }
 
             .product-visual {
