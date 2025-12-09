@@ -527,8 +527,60 @@
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                height: auto;
+                min-height: 100vh;
+                justify-content: flex-start;
+                padding-top: 100px;
+            }
+
             .hero h1 {
-                font-size: 4rem;
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-img-container {
+                width: 85%;
+                height: auto;
+                max-width: 380px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-btn {
+                margin-bottom: 2rem;
+            }
+
+            /* Stack the benefits menu on mobile */
+            .menu-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+                overflow-y: auto;
+                max-height: 75vh;
+                /* Allow scrolling within menu area */
+                width: 100%;
+            }
+
+            #creatine-menu {
+                justify-content: flex-start;
+                padding-top: 60px;
+            }
+
+            /* Hide the duplicate button in menu on mobile if it takes too much space, 
+               or keep it but ensure scrolling. Keeping it for now. */
+
+            .footer-logo {
+                font-size: 15vw;
+                margin-bottom: 0;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
             }
 
             .preorder-section {
@@ -536,15 +588,11 @@
             }
 
             .product-visual {
-                height: 400px;
+                height: 50vh;
             }
 
             .product-details {
                 padding: 2rem;
-            }
-
-            .footer-logo {
-                font-size: 3rem;
             }
         }
 
