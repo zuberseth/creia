@@ -236,10 +236,8 @@
         }
 
         .close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
             z-index: 20;
+            margin-top: 3rem;
             /* Inherits .nav-btn styles */
         }
 
@@ -626,8 +624,7 @@
             </div>
         </div>
 
-        <!-- Close Button -->
-        <div class="nav-btn close-btn" onclick="toggleMenu(); event.stopPropagation()">X</div>
+
 
         <div class="menu-content" onclick="event.stopPropagation()">
             <div class="benefit-card">
@@ -657,6 +654,9 @@
 
         <!-- Duplicate Pre-Order Button -->
         <div class="hero-btn" style="margin-top: 3rem;">pre-orders open 12.25</div>
+
+        <!-- Close Button (Moved to Bottom) -->
+        <div class="nav-btn close-btn" onclick="toggleMenu(); event.stopPropagation()">X</div>
     </div>
 
     <!-- Hero Section -->
