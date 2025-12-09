@@ -259,31 +259,27 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            /* Changed from height: 100vh to min-height and padding to prevent top cutoff */
-            min-height: 100vh;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            /* Aligns to top */
-            align-items: center;
+            background: transparent;
             text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-img-container {
+            width: 495px;
+            height: auto;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            z-index: 1;
-            padding-top: 15vh;
-            /* Push content down aesthetically */
-            padding-bottom: 5rem;
-            /* Space at bottom */
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 5vw, 6.5rem);
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-            margin-bottom: 1rem;
+            font-size: clamp(2.4rem, 8.1vw, 6.5rem);
             color: var(--charcoal);
+            margin-bottom: 1rem;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         .hero p {
@@ -291,38 +287,6 @@
             color: var(--slate-grey);
             max-width: 400px;
             margin-bottom: 2rem;
-        }
-
-        .hero-img-container {
-            position: relative;
-            z-index: 1;
-            mix-blend-mode: multiply;
-            margin-bottom: 2rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* Update register card specifically to ensure 50px radius everywhere */
-        .register-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 2rem;
-            border-radius: 50px !important;
-            /* Enforce 50px */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 3rem auto;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
-            max-width: 90%;
-            width: 320px;
-            text-align: center;
         }
 
         /* --- MARQUEE --- */
@@ -728,89 +692,6 @@
             color: var(--slate-grey);
             line-height: 1.6;
         }
-
-        .register-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 2rem;
-            border-radius: 50px;
-            /* Matching hero-btn radius */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem auto;
-            /* Centered with margin */
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
-            max-width: 90%;
-            width: 320px;
-            text-align: center;
-        }
-
-        .register-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--charcoal);
-            letter-spacing: 0.05em;
-        }
-
-        .email-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
-            padding: 10px 20px;
-            color: var(--charcoal);
-            font-family: inherit;
-            font-size: 0.85rem;
-            text-align: center;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .email-input::placeholder {
-            color: var(--slate-grey);
-            opacity: 0.8;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-        }
-
-        .email-input:focus {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .submitted-msg {
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--charcoal);
-            letter-spacing: 0.05em;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 
@@ -891,27 +772,6 @@
         <div class="hero-btn">pre-orders open 12.25</div>
         <h1>DEFROST YOUR<br>POTENTIAL.</h1>
         <p>creia's micronised creatine monohydrate <br>is refined for clarity, not just mass.</p>
-        <!-- Register Interest Section -->
-        <div class="register-card" id="registerCard">
-            <div id="registerContent"
-                style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                <div class="register-title">REGISTER INTEREST</div>
-                <form onsubmit="handleRegister(event)" style="width: 100%;">
-                    <input type="email" class="email-input" placeholder="ENTER EMAIL" required>
-                </form>
-            </div>
-            <div id="submittedContent" class="hidden">
-                <div class="submitted-msg">SUBMITTED.</div>
-            </div>
-        </div>
-
-        <script>
-            function handleRegister(e) {
-                e.preventDefault();
-                document.getElementById('registerContent').classList.add('hidden');
-                document.getElementById('submittedContent').classList.remove('hidden');
-            }
-        </script>
     </section>
 
     <div class="bottom-spacer">
