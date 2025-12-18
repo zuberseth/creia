@@ -172,6 +172,11 @@
             -webkit-user-select: none;
             -webkit-user-drag: none;
             -webkit-touch-callout: none;
+            /* Prevent layout shift */
+            aspect-ratio: 3 / 4;
+            object-fit: contain;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .hero h1 {
