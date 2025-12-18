@@ -49,24 +49,25 @@
             -webkit-transform: translateZ(0);
         }
 
-        /* Mobile Background: Absolute positioned for opacity control without jitter */
+        /* Mobile Background: Fixed position with GPU acceleration */
         body::after {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            min-height: 100vh;
             background: url('rime-bg.png') no-repeat center top;
             background-size: cover;
             opacity: 0.2;
             z-index: -2;
             pointer-events: none;
-            background-attachment: scroll;
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
-        /* Grain Texture */
+        /* Grain Texture - simplified for mobile performance */
         body::before {
             content: "";
             position: fixed;
@@ -75,9 +76,12 @@
             width: 100%;
             height: 100%;
             background-image: var(--grain-overlay);
-            opacity: 0.05;
+            opacity: 0.03;
             pointer-events: none;
             z-index: 9999;
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         a {
