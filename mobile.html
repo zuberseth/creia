@@ -29,6 +29,7 @@
 
         html {
             background-color: var(--white);
+            height: 100%;
         }
 
         body {
@@ -53,13 +54,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            height: 100dvh;
+            height: 100%;
+            /* Use % for stability */
             background: url('rime-bg.png') no-repeat center top;
             background-size: cover;
             opacity: 0.2;
             z-index: -2;
             pointer-events: none;
+            /* Prevents re-calculation of background-size on scroll */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .grain-fixed {
@@ -67,8 +71,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            height: 100dvh;
+            height: 100%;
             background-image: var(--grain-overlay);
             opacity: 0.03;
             pointer-events: none;
@@ -728,6 +731,15 @@
             // Lock body scroll when menu is open
             document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
         }
+
+        // Lock background height to prevent "zooming" on mobile scroll
+        function lockBgHeight() {
+            const h = window.innerHeight;
+            document.querySelector('.bg-fixed').style.height = h + 'px';
+            document.querySelector('.grain-fixed').style.height = h + 'px';
+        }
+        window.addEventListener('load', lockBgHeight);
+        window.addEventListener('orientationchange', () => setTimeout(lockBgHeight, 100));
 
         // Carousel Logic
         document.addEventListener('DOMContentLoaded', () => {
