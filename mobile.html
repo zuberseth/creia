@@ -281,7 +281,8 @@
 
         /* --- FOOTER --- */
         footer {
-            padding: 2rem 1rem;
+            /* Increased bottom padding to prevent system UI (Safri bar) from covering text */
+            padding: 2rem 1rem max(120px, env(safe-area-inset-bottom) + 80px) 1rem;
             background-color: var(--white);
             display: flex;
             flex-direction: row;
@@ -291,6 +292,8 @@
             z-index: 10;
             min-height: 200px;
             margin-top: 100px;
+            /* Ensure footer clips nothing and extends fully */
+            width: 100%;
         }
 
         /* Gradient attached to footer */
