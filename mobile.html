@@ -27,12 +27,14 @@
         }
 
         html {
-            background-color: var(--icy-blue);
+            background-color: var(--white);
         }
 
         body {
             font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
-            background: transparent;
+            background-color: var(--icy-blue);
+            isolation: isolate;
+            /* Creates stacking context so background sits BEHIND z-index:-2 image */
             color: var(--charcoal);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
