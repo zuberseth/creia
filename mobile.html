@@ -45,6 +45,8 @@
             width: 100%;
             /* Smooth scrolling optimizations */
             -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         /* Mobile Background: Fixed position with GPU acceleration */
@@ -434,7 +436,8 @@
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            /* Matched to input size */
             transition: background 0.3s ease;
         }
 
@@ -630,6 +633,7 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">c.</div>
+        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
     </nav>
 
     <div id="creatine-menu" onclick="toggleMenu()">
@@ -698,14 +702,12 @@
         <div class="hero-btn">pre-orders open 2.26</div>
         <h1>DEFROST YOUR<br>POTENTIAL.</h1>
         <p>creia's micronised creatine monohydrate <br>is refined for clarity of mind, not just mass.</p>
-        <div class="nav-btn" onclick="toggleMenu()" style="cursor: pointer; margin-top: 1.5rem; display: inline-block;">
-            WHY CREATINE?</div>
     </section>
 
     <!-- Sign Up Section -->
     <section class="signup-section">
         <div class="glass-container">
-            <h3 id="signup-title">SIGN UP FOR UPDATES</h3>
+            <h3 id="signup-title">JOIN WAITLIST</h3>
             <form class="signup-form" id="signup-form">
                 <input type="email" id="email-input" placeholder="ENTER EMAIL" required>
                 <button type="submit">SUBMIT</button>
