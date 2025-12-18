@@ -51,31 +51,37 @@
 
         .bg-fixed {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Use % for stability */
+            top: -50px;
+            /* Oversized top */
+            left: -50px;
+            /* Oversized left */
+            width: calc(100% + 100px);
+            height: calc(100% + 100px);
             background: url('rime-bg.png') no-repeat center top;
             background-size: cover;
             opacity: 0.2;
             z-index: -2;
             pointer-events: none;
-            /* Prevents re-calculation of background-size on scroll */
-            -webkit-backface-visibility: hidden;
+            /* Hardware acceleration and position lock */
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            will-change: transform;
         }
 
         .grain-fixed {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -50px;
+            left: -50px;
+            width: calc(100% + 100px);
+            height: calc(100% + 100px);
             background-image: var(--grain-overlay);
             opacity: 0.03;
             pointer-events: none;
             z-index: 9999;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
         }
 
         a {
@@ -734,7 +740,7 @@
 
         // Lock background height to prevent "zooming" on mobile scroll
         function lockBgHeight() {
-            const h = window.innerHeight;
+            const h = window.innerHeight + 100; // Oversized for overscroll safety
             document.querySelector('.bg-fixed').style.height = h + 'px';
             document.querySelector('.grain-fixed').style.height = h + 'px';
         }
