@@ -509,12 +509,25 @@
                             });
 
                             if (response.ok) {
-                                // UI Update
-                                form.style.display = 'none';
-                                titleDiv.style.opacity = '0'; // Hide title
-                                setTimeout(() => { titleDiv.style.display = 'none'; }, 300);
+                                // 1. Fade out elements
+                                form.style.transition = 'opacity 0.3s ease';
+                                titleDiv.style.transition = 'opacity 0.3s ease';
+                                form.style.opacity = '0';
+                                titleDiv.style.opacity = '0';
 
-                                successDiv.style.display = 'flex';
+                                // 2. Wait for fade to complete, then swap
+                                setTimeout(() => {
+                                    form.style.display = 'none';
+                                    titleDiv.style.display = 'none';
+
+                                    successDiv.style.display = 'flex';
+                                    // Optional: Fade in success div smoothly
+                                    successDiv.style.opacity = '0';
+                                    successDiv.style.transition = 'opacity 0.3s ease';
+                                    requestAnimationFrame(() => {
+                                        successDiv.style.opacity = '1';
+                                    });
+                                }, 300);
                             } else {
                                 alert('Something went wrong. Please try again.');
                             }
