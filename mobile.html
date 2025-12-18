@@ -238,42 +238,73 @@
             pointer-events: auto;
         }
 
+        /* Carousel Container */
         .menu-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            /* Single column for mobile */
-            gap: 0.8rem;
-            padding: 1rem;
+            position: relative;
             width: 100%;
-            max-width: 500px;
-            margin-top: 0.5rem;
-            /* Even spacing from button above */
+            max-width: 85vw;
+            overflow: hidden;
+            margin: 1.5rem auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
         }
 
         .benefit-card {
-            background: rgba(255, 255, 255, 0.1);
+            flex: 0 0 100%;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.5rem;
-            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .benefit-title {
-            font-size: 1rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
+            letter-spacing: -0.02em;
         }
 
         .benefit-desc {
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             color: var(--slate-grey);
-            line-height: 1.4;
+            line-height: 1.5;
+        }
+
+        /* Carousel Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .close-btn {
-            margin-top: 2rem;
-            margin-bottom: 4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         /* Marquee in Menu */
@@ -603,25 +634,33 @@
         <div class="hero-btn" style="margin-bottom: 1rem;">pre-orders open 2.26</div>
 
         <div class="menu-content" onclick="event.stopPropagation()">
-            <div class="benefit-card">
-                <h3 class="benefit-title">Brain Power</h3>
-                <p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and focus.
-                </p>
+            <div class="carousel-track" id="carousel-track">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Brain Power</h3>
+                    <p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and
+                        focus, especially when stress or lack of sleep tries to slow you down.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Cycle Sync</h3>
+                    <p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when
+                        hormones fluctuate throughout your cycle.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Clean Energy</h3>
+                    <p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for
+                        sustained power throughout the day.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Lean Definition</h3>
+                    <p class="benefit-desc">Sculpt, don't bulk. creia helps accelerate recovery and maintain lean muscle
+                        definition.</p>
+                </div>
             </div>
-            <div class="benefit-card">
-                <h3 class="benefit-title">Cycle Sync</h3>
-                <p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when hormones
-                    fluctuate.</p>
-            </div>
-            <div class="benefit-card">
-                <h3 class="benefit-title">Clean Energy</h3>
-                <p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for
-                    sustained power.</p>
-            </div>
-            <div class="benefit-card">
-                <h3 class="benefit-title">Lean Definition</h3>
-                <p class="benefit-desc">Sculpt, don't bulk. creia helps accelerate recovery and maintain lean muscle.
-                </p>
+            <div class="carousel-dots" id="carousel-dots">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+                <div class="carousel-dot" data-index="3"></div>
             </div>
         </div>
 
@@ -668,6 +707,52 @@
             const menu = document.getElementById('creatine-menu');
             menu.classList.toggle('active');
         }
+
+        // Carousel Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('carousel-track');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentIndex = 0;
+            const totalCards = 4;
+
+            function goToSlide(index) {
+                if (index < 0) index = totalCards - 1;
+                if (index >= totalCards) index = 0;
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Dot clicks
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(parseInt(dot.dataset.index));
+                });
+            });
+
+            // Swipe support
+            let startX = 0;
+            let endX = 0;
+
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+                }
+            }, { passive: true });
+        });
     </script>
 
 </body>
