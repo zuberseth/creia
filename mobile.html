@@ -478,8 +478,14 @@
             margin-bottom: -2vw;
             line-height: 1;
             font-weight: 700;
-            color: var(--white);
+            color: rgba(255, 255, 255, 0.1);
+            /* Same as button background color */
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+            /* Same as button border */
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Same as button shadow */
             letter-spacing: -0.05em;
+            pointer-events: none;
         }
 
         .footer-links {
