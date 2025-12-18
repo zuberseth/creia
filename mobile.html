@@ -48,39 +48,31 @@
 
         }
 
-        /* Mobile Background: Fixed position with GPU acceleration */
-        body::after {
-            content: "";
+        .bg-fixed {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            height: 100dvh;
             background: url('rime-bg.png') no-repeat center top;
             background-size: cover;
             opacity: 0.2;
             z-index: -2;
             pointer-events: none;
-            will-change: transform;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
         }
 
-        /* Grain Texture - simplified for mobile performance */
-        body::before {
-            content: "";
+        .grain-fixed {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            height: 100dvh;
             background-image: var(--grain-overlay);
             opacity: 0.03;
             pointer-events: none;
             z-index: 9999;
-            will-change: transform;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
         }
 
         a {
@@ -108,7 +100,6 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateZ(0);
         }
 
         .logo {
@@ -630,6 +621,8 @@
 </head>
 
 <body>
+    <div class="bg-fixed"></div>
+    <div class="grain-fixed"></div>
 
     <!-- Navigation -->
     <nav>
