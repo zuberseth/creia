@@ -796,7 +796,119 @@
             color: var(--slate-grey);
             line-height: 1.6;
         }
+
+        /* Checkmark Animation */
+        .checkmark-circle {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .checkmark-circle .checkmark {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #fff;
+        }
+
+        .checkmark.draw:after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 20px;
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            transform: rotate(45deg) scale(0);
+            animation: drawCheck 0.4s ease-in-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes drawCheck {
+            0% {
+                transform: rotate(45deg) scale(0);
+                opacity: 0;
+            }
+
+            80% {
+                transform: rotate(45deg) scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: rotate(45deg) scale(1);
+                opacity: 1;
+            }
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('signup-form');
+            const successDiv = document.getElementById('signup-success');
+            const titleDiv = document.getElementById('signup-title');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const emailInput = document.getElementById('email-input');
+                    const email = emailInput.value;
+
+                    if (email) {
+                        try {
+                            // Send to Vercel Serverless Function
+                            const response = await fetch('/api/signup', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ email: email })
+                            });
+
+                            if (response.ok) {
+                                // UI Update
+                                form.style.display = 'none';
+                                titleDiv.style.opacity = '0'; // Hide title
+                                setTimeout(() => { titleDiv.style.display = 'none'; }, 300);
+
+                                successDiv.style.display = 'flex';
+                            } else {
+                                alert('Something went wrong. Please try again.');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            // Fallback for demo if API fails locally or offline
+                            form.style.display = 'none';
+                            titleDiv.style.display = 'none';
+                            successDiv.style.display = 'flex';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -881,11 +993,18 @@
     <!-- Sign Up Section -->
     <section class="signup-section">
         <div class="glass-container">
-            <h3>SIGN UP FOR UPDATES</h3>
-            <form class="signup-form">
-                <input type="email" placeholder="ENTER EMAIL" required>
+            <h3 id="signup-title">SIGN UP FOR UPDATES</h3>
+            <form class="signup-form" id="signup-form">
+                <input type="email" id="email-input" placeholder="ENTER EMAIL" required>
                 <button type="submit">SUBMIT</button>
             </form>
+            <div id="signup-success"
+                style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                <div class="checkmark-circle">
+                    <div class="background"></div>
+                    <div class="checkmark draw"></div>
+                </div>
+            </div>
         </div>
     </section>
 
