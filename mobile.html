@@ -252,6 +252,7 @@
         .carousel-track {
             display: flex;
             transition: transform 0.4s ease;
+            touch-action: pan-y pinch-zoom;
         }
 
         .benefit-card {
@@ -261,7 +262,8 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 2rem 1.5rem;
             border-radius: 16px;
-            min-height: 45vh;
+            min-height: 54vh;
+            /* 20% increase from 45vh */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -315,13 +317,16 @@
 
         /* Marquee in Menu */
         .marquee-container {
+            position: absolute;
+            top: 50px;
+            left: 0;
             width: 100%;
             padding: 0.6rem 0;
             background: rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
             white-space: nowrap;
-            flex-shrink: 0;
+            z-index: 10;
         }
 
         .marquee-content {
@@ -719,6 +724,7 @@
         // Carousel Logic
         document.addEventListener('DOMContentLoaded', () => {
             const track = document.getElementById('carousel-track');
+            const menuContent = document.querySelector('.menu-content');
             const dots = document.querySelectorAll('.carousel-dot');
             let currentIndex = 0;
             const totalCards = 4;
@@ -741,16 +747,22 @@
                 });
             });
 
-            // Swipe support
+            // Swipe support - use menu-content for better touch detection
             let startX = 0;
-            let endX = 0;
+            let isSwiping = false;
 
-            track.addEventListener('touchstart', (e) => {
+            menuContent.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
+                isSwiping = true;
             }, { passive: true });
 
-            track.addEventListener('touchend', (e) => {
-                endX = e.changedTouches[0].clientX;
+            menuContent.addEventListener('touchmove', (e) => {
+                // Track that we're still swiping
+            }, { passive: true });
+
+            menuContent.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                const endX = e.changedTouches[0].clientX;
                 const diff = startX - endX;
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) {
@@ -759,6 +771,7 @@
                         goToSlide(currentIndex - 1);
                     }
                 }
+                isSwiping = false;
             }, { passive: true });
         });
     </script>
