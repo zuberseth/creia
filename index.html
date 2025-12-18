@@ -9,6 +9,7 @@
     <script>
         // Redirect to mobile version if on mobile device
         if (screen.width <= 768 || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // Check if not already on mobile page to avoid infinite loop (safety)
             if (!window.location.href.includes('mobile.html')) {
                 window.location.replace("mobile.html");
             }
@@ -494,6 +495,101 @@
             text-align: center;
         }
 
+        /* --- SIGN UP SECTION --- */
+        .signup-section {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            z-index: 20;
+            /* Ensure it sits above gradients if needed */
+            margin-bottom: 4rem;
+        }
+
+        .glass-container {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50px;
+            /* Matches hero-btn radius */
+            padding: 3rem 4rem;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-container h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .signup-form input[type="email"] {
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--charcoal);
+            font-family: inherit;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            outline: none;
+            text-align: center;
+            appearance: none;
+            transition: all 0.3s ease;
+        }
+
+        .signup-form input[type="email"]:focus {
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .signup-form input::placeholder {
+            color: var(--slate-grey);
+            opacity: 0.8;
+        }
+
+        .signup-form button {
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--charcoal);
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .signup-form button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+        }
+
         /* --- FOOTER --- */
         footer {
             padding: 2rem 2rem 0;
@@ -700,102 +796,126 @@
             color: var(--slate-grey);
             line-height: 1.6;
         }
+    </style>
+</head>
 
-        /* --- SIGN UP SECTION --- */
-        .signup-section {
-            padding: 2rem 1rem;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 5;
-            /* Ensure above gradient/spacer if needed */
-        }
+<body>
 
-        .glass-container {
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            /* Matches hero-btn radius aesthetic */
-            border-radius: 30px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">c.</div>
+        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
+    </nav>
 
-        .glass-container h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            color: var(--charcoal);
-            margin-bottom: 0.5rem;
-        }
+    <div id="creatine-menu" onclick="toggleMenu()">
+        <!-- Scrolling Marquee (Moved to Top) -->
+        <div class="marquee-container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10;">
+            <div class="marquee-content">
+                <span>CLEAN FORMULATION</span>
+                <span>NO PRESERVATIVES</span>
+                <span>100% CREATINE</span>
+                <span>MENTAL CLARITY</span>
+                <span>WELLNESS FRIDGE ESSENTIAL</span>
+                <span>FORMULATED FOR LONGEVITY</span>
+                <span>ENHANCED MENTAL CLARITY</span>
+                <span>INCREASED ENERGY</span>
+                <span>BETTER SLEEP</span>
+                <span>REDUCES BRAIN FOG</span>
+                <span>IMPROVED CONCENTRATION</span>
+                <span>REDUCES STRESS</span>
+                <span>IMPROVED MOOD</span>
+                <span>REDUCES PMS</span>
+            </div>
+        </div>
 
-        .signup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-        }
 
-        .signup-form input[type="email"] {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--charcoal);
-            font-family: inherit;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            outline: none;
-            text-align: center;
-            appearance: none;
-        }
 
-        .signup-form input::placeholder {
-            color: var(--slate-grey);
-            opacity: 0.8;
-        }
+        <div class="menu-content" onclick="event.stopPropagation()">
+            <div class="benefit-card">
+                <h3 class="benefit-title">Brain Power</h3>
+                <p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and focus,
+                    especially when stress or
+                    lack
+                    of sleep tries to slow you down.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Cycle Sync</h3>
+                <p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when hormones
+                    fluctuate, so you stay balanced all month.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Clean Energy</h3>
+                <p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for
+                    sustained power that
+                    outlasts your morning coffee.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Lean Definition</h3>
+                <p class="benefit-desc">Sculpt, don't bulk. creia helps accelerate recovery and maintain the lean muscle
+                    that
+                    keeps
+                    you feeling strong and capable.</p>
+            </div>
+        </div>
 
-        .signup-form button {
-            padding: 10px 24px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--charcoal);
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
+        <!-- Duplicate Pre-Order Button -->
+        <div class="hero-btn" style="margin-top: 3rem;">pre-orders open 12.25</div>
 
-        .signup-form button:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
+        <!-- Close Button (Moved to Bottom) -->
+        <div class="nav-btn close-btn" onclick="toggleMenu(); event.stopPropagation()">X</div>
+    </div>
 
-        </head><body>< !-- Navigation --><nav><div class="logo">c.</div><div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div></nav><div id="creatine-menu" onclick="toggleMenu()">< !-- Scrolling Marquee (Moved to Top) --><div class="marquee-container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10;"><div class="marquee-content"><span>CLEAN FORMULATION</span><span>NO PRESERVATIVES</span><span>100% CREATINE</span><span>MENTAL CLARITY</span><span>WELLNESS FRIDGE ESSENTIAL</span><span>FORMULATED FOR LONGEVITY</span><span>ENHANCED MENTAL CLARITY</span><span>INCREASED ENERGY</span><span>BETTER SLEEP</span><span>REDUCES BRAIN FOG</span><span>IMPROVED CONCENTRATION</span><span>REDUCES STRESS</span><span>IMPROVED MOOD</span><span>REDUCES PMS</span></div></div><div class="menu-content" onclick="event.stopPropagation()"><div class="benefit-card"><h3 class="benefit-title">Brain Power</h3><p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and focus,
- especially when stress or lack of sleep tries to slow you down.</p></div><div class="benefit-card"><h3 class="benefit-title">Cycle Sync</h3><p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when hormones
- fluctuate,
-        so you stay balanced all month.</p></div><div class="benefit-card"><h3 class="benefit-title">Clean Energy</h3><p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for
- sustained power that outlasts your morning coffee.</p></div><div class="benefit-card"><h3 class="benefit-title">Lean Definition</h3><p class="benefit-desc">Sculpt,
-        don't bulk. creia helps accelerate recovery and maintain the lean muscle
- that keeps you feeling strong and capable.</p></div></div>< !-- Duplicate Pre-Order Button --><div class="hero-btn" style="margin-top: 3rem;">pre-orders open 12.25</div>< !-- Close Button (Moved to Bottom) --><div class="nav-btn close-btn" onclick="toggleMenu(); event.stopPropagation()">X</div></div>< !-- Hero Section --><section class="hero"><div class="swiss-mono">EST. 2025 &mdash;
-        LONDON</div><br><div class="hero-img-container"><img src="creia-hero-vertical.png" alt="Creia Sachets"
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="swiss-mono">EST. 2025 &mdash; LONDON</div>
+        <br>
+        <div class="hero-img-container">
+            <img src="creia-hero-vertical.png" alt="Creia Sachets"
+                style="width: 65%; height: auto; display: block; margin: 36px auto 54px;">
+        </div>
+        <div class="hero-btn">pre-orders open 12.25</div>
+        <h1>DEFROST YOUR<br>POTENTIAL.</h1>
+        <p>creia's micronised creatine monohydrate <br>is refined for clarity, not just mass.</p>
+    </section>
 
-        style="width: 65%; height: auto; display: block; margin: 36px auto 54px;"></div><div class="hero-btn">pre-orders open 12.25</div><h1>DEFROST YOUR<br>POTENTIAL.</h1><p>creia's micronised creatine monohydrate <br>is refined for clarity, not just mass.</p>
- </section><section class="signup-section"><div class="glass-container"><h3>SIGN UP FOR UPDATES</h3><form class="signup-form"><input type="email" placeholder="ENTER EMAIL" required><button type="submit">SUBMIT</button></form></div></section><div class="bottom-spacer"><div class="hero-gradient"></div></div>< !-- Scrolling Marquee Removed (Moved to Menu) -->< !-- Pre-Order Module -->< !-- Pre-Order Module Removed -->< !-- <section class="preorder-section">... </section>-->< !-- Benefits Section Removed (Moved to Menu) -->< !-- Footer --><footer><div class="footer-logo">creia</div><div class="footer-links"><a href="mailto:info@getcreia.com">Contact</a></div></footer>< !-- Simple Script for Interaction --><script>function toggleMenu() {
-            const menu=document.getElementById('creatine-menu');
+    <!-- Sign Up Section -->
+    <section class="signup-section">
+        <div class="glass-container">
+            <h3>SIGN UP FOR UPDATES</h3>
+            <form class="signup-form">
+                <input type="email" placeholder="ENTER EMAIL" required>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="bottom-spacer">
+        <div class="hero-gradient"></div>
+    </div>
+
+    <!-- Scrolling Marquee Removed (Moved to Menu) -->
+
+    <!-- Pre-Order Module -->
+    <!-- Pre-Order Module Removed -->
+    <!-- <section class="preorder-section"> ... </section> -->
+
+    <!-- Benefits Section Removed (Moved to Menu) -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">creia</div>
+        <div class="footer-links">
+            <a href="mailto:info@getcreia.com">Contact</a>
+        </div>
+    </footer>
+
+    <!-- Simple Script for Interaction -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('creatine-menu');
             menu.classList.toggle('active');
         }
+    </script>
+</body>
 
-        </script></body></html>
+</html>
