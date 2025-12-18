@@ -202,8 +202,27 @@
             padding-top: 60px;
             overflow-y: scroll;
             /* Scrollable menu */
-            padding-bottom: 40px;
-            /* Reduced to limit scroll past X */
+            padding-bottom: 2rem;
+            /* Reduced from 120px to limit unwanted scroll */
+        }
+
+        /* ... skipped lines ... */
+
+        .footer-logo {
+            font-size: 20vw;
+            margin-bottom: -2vw;
+            line-height: 1;
+            font-weight: 700;
+            color: var(--icy-blue);
+            letter-spacing: -0.05em;
+        }
+
+        .footer-links {
+            /* Position static to respect flex alignment */
+            position: static;
+            text-align: right;
+            /* Adjust margin if needed to align baseline */
+            margin-bottom: 0.5rem;
         }
 
         #creatine-menu.active {
@@ -320,19 +339,17 @@
         }
 
         .footer-links {
-            /* Removed absolute positioning for better alignment */
-            position: relative;
-            right: auto;
-            bottom: auto;
+            /* Position static to respect flex alignment */
+            position: static;
             text-align: right;
             margin-bottom: 1rem;
-            /* Adjust slightly to align with logo baseline visually */
+            /* Adjust to align with logo baseline */
         }
 
         .footer-links a {
             display: block;
             text-align: right;
-            margin-bottom: 0;
+            margin-bottom: 0.5rem;
             font-size: 0.8rem;
             color: var(--slate-grey);
             text-transform: uppercase;
@@ -345,7 +362,7 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">c.</div>
-        <div class="nav-btn" onclick="toggleMenu()">ORDER</div>
+        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
     </nav>
 
     <div id="creatine-menu" onclick="toggleMenu()">
