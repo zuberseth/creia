@@ -6,15 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>creia creatine | cold therapy for your cells</title>
     <link rel="icon" href="favicon.png" type="image/png">
-    <script>
-        // Redirect to mobile version if on mobile device
-        if (screen.width <= 768 || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Check if not already on mobile page to avoid infinite loop (safety)
-            if (!window.location.href.includes('mobile.html')) {
-                window.location.replace("loading.html");
-            }
-        }
-    </script>
+    <!-- Redirect logic removed for universal loading overlay -->
+    <meta name="theme-color" content="#86b9d5">
     <style>
         /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
         :root {
@@ -27,6 +20,50 @@
             --glass-border: rgba(255, 255, 255, 0.3);
             --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
             /* Adds texture */
+            --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
+            /* Adds texture */
+        }
+
+        /* LOADING OVERLAY STYLES */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+            background-color: #86b9d5;
+            /* GIF top color match */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* No z-index, relies on DOM order */
+        }
+
+        .loader-text {
+            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 15vw;
+            color: white;
+            mix-blend-mode: difference;
+            letter-spacing: -0.05em;
+            position: relative;
         }
 
         /* --- RESET & BASE STYLES --- */
@@ -46,8 +83,9 @@
             color: var(--charcoal);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            position: relative;
         }
+
+        /* Loading Overlay Logic added at end of body */
 
         /* Fixed background to prevent jitter */
         body::after {
@@ -1049,6 +1087,28 @@
             const menu = document.getElementById('creatine-menu');
             menu.classList.toggle('active');
         }
+    </script>
+    <!-- LOADING OVERLAY -->
+    <div id="loading-overlay">
+        <img src="loading.gif" class="loader-gif" alt="Loading...">
+        <div class="loader-text">creia.</div>
+    </div>
+
+    <script>
+        // Loading Overlay Logic
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                var overlay = document.getElementById('loading-overlay');
+                if (overlay) overlay.classList.add('hidden');
+
+                // Optional: Mobile Redirect Check (Retained safely)
+                if (screen.width <= 768 || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    if (!window.location.href.includes('mobile.html')) {
+                        window.location.replace("mobile.html");
+                    }
+                }
+            }, 3000);
+        });
     </script>
 </body>
 

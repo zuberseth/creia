@@ -10,7 +10,7 @@
     <style>
         /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
         :root {
-            --icy-blue: #EBF3F9;
+            --icy-blue: #DEEAF7;
             --slate-grey: #5C7084;
             --chrome: #E0E0E0;
             --charcoal: #1A1F23;
@@ -18,6 +18,51 @@
             --glass-bg: rgba(255, 255, 255, 0.4);
             --glass-border: rgba(255, 255, 255, 0.3);
             --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        /* LOADING OVERLAY STYLES */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* High z-index to cover everything */
+            z-index: 999999;
+            background-color: #86b9d5;
+            /* GIF top color match */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* No z-index, relies on DOM order */
+        }
+
+        .loader-text {
+            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 15vw;
+            color: white;
+            /* Apply mix-blend-mode directly to text */
+            mix-blend-mode: difference;
+            letter-spacing: -0.05em;
+            position: relative;
+            /* Ensures it sits above due to natural stacking if needed, but flex centers it */
         }
 
         /* --- RESET & BASE STYLES --- */
@@ -480,8 +525,8 @@
             height: calc(100% + 150px);
             background: linear-gradient(to bottom,
                     transparent 0%,
-                    rgba(235, 243, 249, 0.8) 40%,
-                    #EBF3F9 100%);
+                    rgba(222, 234, 247, 0.8) 40%,
+                    var(--icy-blue) 100%);
             pointer-events: none;
             z-index: -1;
         }
@@ -640,6 +685,12 @@
 </head>
 
 <body>
+    <!-- LOADING OVERLAY -->
+    <div id="loading-overlay">
+        <img src="loading.gif" class="loader-gif" alt="Loading...">
+        <div class="loader-text">creia.</div>
+    </div>
+
     <div class="bg-fixed"></div>
     <div class="grain-fixed"></div>
 
@@ -809,6 +860,14 @@
                 }
                 isSwiping = false;
             }, { passive: true });
+        });
+
+        // Loading Overlay Logic
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                var overlay = document.getElementById('loading-overlay');
+                if (overlay) overlay.classList.add('hidden');
+            }, 3000);
         });
     </script>
 
