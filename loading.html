@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creia.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+            /* Fallback */
+        }
+
+        /* Fullscreen GIF Background */
+        .bg-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* Centered Text Container */
+        .loader-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            /* Critical for the inverse effect */
+            mix-blend-mode: difference;
+        }
+
+        /* The 'creia.' text */
+        .loader-text {
+            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 15vw;
+            /* Large and bold */
+            color: white;
+            /* White text + Difference mode = Inverts background */
+            letter-spacing: -0.05em;
+        }
+    </style>
+    <script>
+        // Redirect to mobile.html after 3 seconds
+        window.onload = function () {
+            setTimeout(function () {
+                // Use replace to prevent back-button looping
+                window.location.replace("mobile.html");
+            }, 3000);
+        };
+    </script>
+</head>
+
+<body>
+    <!-- Background GIF -->
+    <!-- PLACEHOLDER: Please ensure a file named 'loading.gif' is in the root directory -->
+    <img src="loading.gif" alt="Loading..." class="bg-gif">
+
+    <!-- Inverted/Masked Text -->
+    <div class="loader-content">
+        <div class="loader-text">creia.</div>
+    </div>
+</body>
+
+</html>
