@@ -200,6 +200,20 @@
             /* Space for Nav */
         }
 
+        /* White diffused circle behind hero content */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 80%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .swiss-mono {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-weight: 300;
