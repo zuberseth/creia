@@ -206,12 +206,12 @@
         .hero::before {
             content: "";
             position: absolute;
-            top: 50%;
+            top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 120%;
             height: 120%;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 50%);
             pointer-events: none;
             z-index: -1;
         }
@@ -435,6 +435,21 @@
             100% {
                 transform: translateX(-50%);
             }
+        }
+
+        /* --- MAIN PAGE BENEFITS SECTION --- */
+        .main-benefits {
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .main-benefits .benefit-card {
+            flex: none;
+            min-height: auto;
+            padding: 1.5rem;
         }
 
         /* --- SIGN UP SECTION --- */
@@ -789,6 +804,30 @@
         <div class="hero-btn">pre-orders open 2.26</div>
         <h1>DEFROST YOUR<br>POTENTIAL.</h1>
         <p>micronised creatine monohydrate refined for clarity of mind, not just muscle mass.</p>
+    </section>
+
+    <!-- Benefits Section on Main Page -->
+    <section class="main-benefits">
+        <div class="benefit-card">
+            <h3 class="benefit-title">Brain Power</h3>
+            <p class="benefit-desc">creia's creatine helps you cut through the fog. Sharpen your memory and focus,
+                especially when stress or lack of sleep tries to slow you down.</p>
+        </div>
+        <div class="benefit-card">
+            <h3 class="benefit-title">Cycle Sync</h3>
+            <p class="benefit-desc">creia's creatine helps you stabilise your energy levels and mood when hormones
+                fluctuate throughout your cycle.</p>
+        </div>
+        <div class="benefit-card">
+            <h3 class="benefit-title">Clean Energy</h3>
+            <p class="benefit-desc">Vitality without the crash. creia's creatine fuels your cells directly for sustained
+                power throughout the day.</p>
+        </div>
+        <div class="benefit-card">
+            <h3 class="benefit-title">Lean Definition</h3>
+            <p class="benefit-desc">Sculpt, don't bulk. creia helps accelerate recovery and maintain lean muscle
+                definition.</p>
+        </div>
     </section>
 
     <!-- Sign Up Section -->
