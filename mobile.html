@@ -11,7 +11,7 @@
     <style>
         /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
         :root {
-            --icy-blue: #E3EDF6;
+            --icy-blue: #B4CADE;
             --slate-grey: #5C7084;
             --chrome: #E0E0E0;
             --charcoal: #1A1F23;
@@ -74,8 +74,8 @@
         }
 
         html {
-            background-color: #B4CADE;
-            /* Match overscroll color */
+            background-color: var(--icy-blue);
+            /* Match body for overscroll */
             height: 100%;
         }
 
@@ -129,6 +129,17 @@
             z-index: 9999;
             transform: translate3d(0, 0, 0);
             -webkit-transform: translate3d(0, 0, 0);
+        }
+
+        .white-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: -3;
+            pointer-events: none;
         }
 
         a {
@@ -533,7 +544,7 @@
             background: linear-gradient(to bottom,
                     transparent 0%,
                     rgba(180, 202, 222, 0.8) 40%,
-                    #B4CADE 100%);
+                    var(--icy-blue) 100%);
             pointer-events: none;
             z-index: -1;
         }
@@ -698,6 +709,7 @@
         <div class="loader-text">creia.</div>
     </div>
 
+    <div class="white-bg"></div>
     <div class="bg-fixed"></div>
     <div class="grain-fixed"></div>
 
