@@ -98,14 +98,17 @@
 
         .bg-fixed {
             position: fixed;
-            top: -50px;
-            /* Oversized top */
-            left: -50px;
-            /* Oversized left */
-            width: calc(100% + 100px);
-            height: calc(100% + 100px);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            /* Dynamic viewport height for mobile */
             background: url('desktop-bg.jpg') no-repeat center top;
             background-size: cover;
+            background-attachment: fixed;
             opacity: 0.2;
             z-index: -2;
             pointer-events: none;
@@ -114,7 +117,6 @@
             -webkit-transform: translate3d(0, 0, 0);
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            will-change: transform;
         }
 
         .grain-fixed {
