@@ -11,7 +11,7 @@
     <style>
         /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
         :root {
-            --icy-blue: #E3EDF6;
+            --icy-blue: #B4CADE;
             --slate-grey: #5C7084;
             --chrome: #E0E0E0;
             --charcoal: #1A1F23;
@@ -30,8 +30,8 @@
             height: 100%;
             /* High z-index to cover everything */
             z-index: 999999;
-            background-color: #B4CADE;
-            /* Status bar match */
+            background-color: #86b9d5;
+            /* GIF top color match */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -74,8 +74,8 @@
         }
 
         html {
-            background-color: #B4CADE;
-            /* Match top status bar */
+            background-color: var(--icy-blue);
+            /* Match body for overscroll */
             height: 100%;
         }
 
@@ -532,7 +532,7 @@
             height: calc(100% + 150px);
             background: linear-gradient(to bottom,
                     transparent 0%,
-                    rgba(222, 234, 247, 0.8) 40%,
+                    rgba(180, 202, 222, 0.8) 40%,
                     var(--icy-blue) 100%);
             pointer-events: none;
             z-index: -1;
