@@ -198,6 +198,8 @@
             padding-top: 84px;
             /* 30% less than 120px */
             /* Space for Nav */
+            overflow: hidden;
+            /* Prevent horizontal scroll from pseudo-element */
         }
 
         /* White diffused circle behind hero content */
@@ -209,7 +211,7 @@
             transform: translate(-50%, -50%);
             width: 120%;
             height: 120%;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 60%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 50%);
             pointer-events: none;
             z-index: -1;
         }
