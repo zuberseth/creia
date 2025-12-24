@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#86b9d5" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#86b9d5" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#E3EDF6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#E3EDF6" media="(prefers-color-scheme: dark)">
     <title>creia creatine | cold therapy for your cells</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
@@ -169,7 +169,7 @@
         .nav-btn {
             font-size: 0.9rem;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 8px 16px;
@@ -179,6 +179,8 @@
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.4),
                 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Ensure it looks like a pill */
+            display: inline-block;
         }
 
         /* --- HERO SECTION --- */
@@ -702,8 +704,7 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">c.</div>
-        <div class="nav-trigger" onclick="toggleMenu()"
-            style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase;">WHY CREATINE?</div>
+        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
     </nav>
 
     <div id="creatine-menu" onclick="toggleMenu()">
