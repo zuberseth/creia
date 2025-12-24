@@ -74,14 +74,13 @@
         }
 
         html {
-            background-color: var(--icy-blue);
-            /* Match body for overscroll */
+            background-color: #B4CADE !important;
             height: 100%;
         }
 
         body {
             font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
-            background-color: var(--icy-blue);
+            background-color: #FFFFFF;
             isolation: isolate;
             /* Creates stacking context so background sits BEHIND z-index:-2 image */
             color: var(--charcoal);
@@ -129,17 +128,6 @@
             z-index: 9999;
             transform: translate3d(0, 0, 0);
             -webkit-transform: translate3d(0, 0, 0);
-        }
-
-        .white-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            z-index: -3;
-            pointer-events: none;
         }
 
         a {
@@ -709,7 +697,6 @@
         <div class="loader-text">creia.</div>
     </div>
 
-    <div class="white-bg"></div>
     <div class="bg-fixed"></div>
     <div class="grain-fixed"></div>
 
