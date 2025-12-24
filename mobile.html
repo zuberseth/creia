@@ -74,13 +74,14 @@
         }
 
         html {
-            background-color: #B4CADE !important;
+            background-color: var(--icy-blue);
+            /* Match body for overscroll */
             height: 100%;
         }
 
         body {
             font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
-            background-color: #FFFFFF;
+            background-color: var(--icy-blue);
             isolation: isolate;
             /* Creates stacking context so background sits BEHIND z-index:-2 image */
             color: var(--charcoal);
