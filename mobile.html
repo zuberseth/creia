@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#E3EDF6">
+    <meta name="theme-color" content="#86b9d5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#86b9d5" media="(prefers-color-scheme: dark)">
     <title>creia creatine | cold therapy for your cells</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
@@ -29,7 +30,7 @@
             height: 100%;
             /* High z-index to cover everything */
             z-index: 999999;
-            background-color: #BECBDA;
+            background-color: #86b9d5;
             /* GIF top color match */
             display: flex;
             justify-content: center;
@@ -73,13 +74,14 @@
         }
 
         html {
-            background-color: var(--white);
+            background-color: var(--icy-blue);
+            /* Match body for overscroll */
             height: 100%;
         }
 
         body {
             font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
-            background-color: #E3EDF6;
+            background-color: var(--icy-blue);
             isolation: isolate;
             /* Creates stacking context so background sits BEHIND z-index:-2 image */
             color: var(--charcoal);
@@ -137,23 +139,25 @@
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
+            top: max(1.5rem, env(safe-area-inset-top));
+            left: 1rem;
+            right: 1rem;
+            width: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Mobile Safe Area Padding */
-            padding-top: max(1.5rem, env(safe-area-inset-top));
-            padding-bottom: 1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            /* Floating Capsule Style */
+            padding: 12px 24px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.4);
+            /* Glassmorphism base */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
@@ -269,7 +273,8 @@
             width: 100%;
             height: 100vh;
             height: 100dvh;
-            background: rgba(222, 234, 247, 0.70);
+            background: linear-gradient(rgba(222, 234, 247, 0.70), rgba(222, 234, 247, 0.70)), url('menu-bg.jpg') no-repeat center center;
+            background-size: cover;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
@@ -317,7 +322,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 2rem 1.5rem;
-            border-radius: 16px;
+            border-radius: 50px;
             min-height: 54vh;
             /* 20% increase from 45vh */
             display: flex;
@@ -687,7 +692,7 @@
 <body>
     <!-- LOADING OVERLAY -->
     <div id="loading-overlay">
-        <img src="loading.gif" class="loader-gif" alt="Loading...">
+        <img src="loading 2.gif" class="loader-gif" alt="Loading...">
         <div class="loader-text">creia.</div>
     </div>
 
@@ -697,7 +702,8 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">c.</div>
-        <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
+        <div class="nav-trigger" onclick="toggleMenu()"
+            style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase;">WHY CREATINE?</div>
     </nav>
 
     <div id="creatine-menu" onclick="toggleMenu()">
@@ -863,12 +869,21 @@
         });
 
         // Loading Overlay Logic
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                var overlay = document.getElementById('loading-overlay');
-                if (overlay) overlay.classList.add('hidden');
-            }, 3000);
-        });
+        // Loading Overlay Logic
+        // Start 3-second timer immediately to ensure it never lasts longer than 3s
+        document.body.style.overflow = 'hidden'; // Disable scroll initially
+        setTimeout(function () {
+            var overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.classList.add('hidden');
+
+            document.body.style.overflow = ''; // Re-enable scroll
+
+            // Switch theme color to site theme
+            var themeMetaTags = document.querySelectorAll('meta[name="theme-color"]');
+            themeMetaTags.forEach(function (meta) {
+                meta.setAttribute('content', '#E3EDF6');
+            });
+        }, 3000);
     </script>
 
 </body>
