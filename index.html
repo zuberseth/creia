@@ -37,8 +37,7 @@
             width: 100%;
             height: 100%;
             z-index: 999999;
-            background-color: #86b9d5;
-            /* GIF top color match */
+            background-color: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -51,24 +50,22 @@
             pointer-events: none;
         }
 
-        .loader-gif {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* No z-index, relies on DOM order */
+        .loader-logo {
+            height: 50px;
+            width: auto;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
-        .loader-text {
-            font-family: 'Hubot Sans', sans-serif;
-            font-weight: 700;
-            font-size: 15vw;
-            color: white;
-            mix-blend-mode: difference;
-            letter-spacing: -0.05em;
-            position: relative;
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
         }
 
         /* --- RESET & BASE STYLES --- */
@@ -344,7 +341,7 @@
         }
 
         .hero-img-container {
-            width: 495px;
+            width: 792px;
             height: auto;
             margin-bottom: 0.35rem;
             display: flex;
@@ -362,9 +359,9 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.4rem, 8.1vw, 6.5rem);
+            font-size: clamp(1.92rem, 6.48vw, 5.2rem);
             color: var(--charcoal);
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             position: relative;
             z-index: 10;
         }
@@ -1128,8 +1125,7 @@
     </script>
     <!-- LOADING OVERLAY -->
     <div id="loading-overlay">
-        <img src="loading 2.gif" class="loader-gif" alt="Loading...">
-        <div class="loader-text">creia.</div>
+        <img src="creia-logo.png" class="loader-logo" alt="creia">
     </div>
 
     <script>
