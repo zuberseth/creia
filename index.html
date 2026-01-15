@@ -306,18 +306,8 @@
             padding: 2rem;
         }
 
-        /* Diffused circle behind hero content */
         .hero::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse at center, rgba(13, 25, 31, 0.4) 0%, rgba(13, 25, 31, 0) 80%);
-            pointer-events: none;
-            z-index: -1;
+            display: none;
         }
 
         .hero-img-container {
