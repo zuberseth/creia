@@ -13,15 +13,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
     <style>
-        /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
+        /* --- CSS VARIABLES - DARK THEME --- */
         :root {
-            --icy-blue: #B4CADE;
-            --slate-grey: #5C7084;
-            --chrome: #E0E0E0;
-            --charcoal: #1A1F23;
+            --dark-navy: #0D191F;
+            --dark-moss: #25231C;
+            --muted-white: #DBE4E7;
+            --light-grey: #BEC7CD;
+            --charcoal: #DBE4E7;
             --white: #FFFFFF;
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(13, 25, 31, 0.6);
+            --glass-border: rgba(219, 228, 231, 0.2);
             --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
         }
 
@@ -72,49 +73,25 @@
         }
 
         html {
-            background-color: var(--icy-blue);
-            /* Match body for overscroll */
+            background-color: var(--dark-navy);
             height: 100%;
         }
 
         body {
             font-family: 'Hubot Sans', sans-serif;
-            background-color: var(--icy-blue);
+            background-color: var(--dark-navy);
             isolation: isolate;
-            /* Creates stacking context so background sits BEHIND z-index:-2 image */
-            color: var(--charcoal);
+            color: var(--muted-white);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             position: relative;
-            /* Mobile Optimization: Native scrolling */
             min-height: 100vh;
             width: 100%;
-            /* Smooth scrolling optimizations */
             -webkit-overflow-scrolling: touch;
-
         }
 
         .bg-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100vw;
-            height: 100vh;
-            height: 100dvh;
-            /* Dynamic viewport height for mobile */
-            background: url('desktop-bg.jpg') no-repeat center top;
-            background-size: cover;
-            background-attachment: fixed;
-            opacity: 0.2;
-            z-index: -2;
-            pointer-events: none;
-            /* Hardware acceleration and position lock */
-            transform: translate3d(0, 0, 0);
-            -webkit-transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+            display: none;
         }
 
         .grain-fixed {
@@ -146,18 +123,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Floating Capsule Style */
             padding: 12px 24px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.4);
-            /* Glassmorphism base */
+            background: rgba(13, 25, 31, 0.8);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(219, 228, 231, 0.15);
             border-radius: 50px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
@@ -172,19 +145,17 @@
 
         .nav-btn {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 50px;
             font-weight: 700;
             text-transform: uppercase;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
-            /* Ensure it looks like a pill */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
+            color: var(--muted-white);
         }
 
         /* --- HERO SECTION --- */
@@ -206,7 +177,7 @@
             /* Prevent horizontal scroll from pseudo-element */
         }
 
-        /* White diffused circle behind hero content */
+        /* Diffused circle behind hero content */
         .hero::before {
             content: "";
             position: absolute;
@@ -215,7 +186,7 @@
             transform: translate(-50%, -50%);
             width: 120%;
             height: 120%;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 50%);
+            background: radial-gradient(ellipse at center, rgba(37, 35, 28, 0.5) 0%, rgba(13, 25, 31, 0) 50%);
             pointer-events: none;
             z-index: -1;
         }
@@ -248,11 +219,10 @@
         .swiss-mono {
             font-family: 'Hubot Sans', sans-serif;
             font-weight: 300;
-            /* Light weight */
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--slate-grey);
+            color: var(--light-grey);
         }
 
         .hero-img-container {
@@ -278,7 +248,7 @@
 
         .hero h1 {
             font-size: clamp(2.5rem, 12vw, 4rem);
-            color: var(--charcoal);
+            color: var(--muted-white);
             margin-bottom: 1rem;
             line-height: 0.9;
             letter-spacing: -0.04em;
@@ -286,7 +256,7 @@
 
         .hero p {
             font-size: 1.1rem;
-            color: var(--slate-grey);
+            color: var(--light-grey);
             max-width: 90%;
             margin-bottom: 1rem;
             line-height: 1.4;
@@ -294,17 +264,16 @@
 
         .hero-btn {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.1);
             padding: 8px 16px;
             border-radius: 50px;
             margin-bottom: 2rem;
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(8px);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: var(--muted-white);
         }
 
         /* --- MENU OVERLAY --- */
@@ -315,8 +284,7 @@
             width: 100%;
             height: 100vh;
             height: 100dvh;
-            background: linear-gradient(rgba(222, 234, 247, 0.70), rgba(222, 234, 247, 0.70)), url('menu-bg.jpg') no-repeat center center;
-            background-size: cover;
+            background: rgba(13, 25, 31, 0.95);
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
@@ -329,7 +297,6 @@
             backdrop-filter: blur(20px);
             padding: 50px 0 env(safe-area-inset-bottom, 20px) 0;
             overflow: hidden;
-            /* No scroll */
         }
 
 
@@ -360,21 +327,18 @@
 
         .benefit-card {
             flex: 0 0 100%;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(37, 35, 28, 0.6);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(219, 228, 231, 0.15);
             padding: 2rem 1.5rem;
             border-radius: 50px;
             min-height: 54vh;
-            /* 20% increase from 45vh */
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-sizing: border-box;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .benefit-title {
@@ -383,11 +347,12 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: -0.02em;
+            color: var(--muted-white);
         }
 
         .benefit-desc {
             font-size: 1.1rem;
-            color: var(--slate-grey);
+            color: var(--light-grey);
             line-height: 1.5;
         }
 
@@ -403,14 +368,14 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(219, 228, 231, 0.2);
+            border: 1px solid rgba(219, 228, 231, 0.3);
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
         .carousel-dot.active {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(219, 228, 231, 0.8);
         }
 
         .close-btn {
@@ -430,8 +395,8 @@
             left: 0;
             width: 100%;
             padding: 0.6rem 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(37, 35, 28, 0.5);
+            border-bottom: 1px solid rgba(219, 228, 231, 0.1);
             overflow: hidden;
             white-space: nowrap;
             z-index: 10;
@@ -475,11 +440,10 @@
         }
 
         .glass-container {
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.15);
+            background: rgba(37, 35, 28, 0.5);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            /* Matches hero-btn radius aesthetic */
             border-radius: 30px;
             padding: 2rem;
             width: 100%;
@@ -511,12 +475,11 @@
             width: 100%;
             padding: 12px 20px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--charcoal);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(13, 25, 31, 0.5);
+            color: var(--muted-white);
             font-family: inherit;
             font-size: 16px;
-            /* Prevents zoom on mobile */
             text-transform: uppercase;
             outline: none;
             text-align: center;
@@ -524,34 +487,30 @@
         }
 
         .signup-form input::placeholder {
-            color: var(--slate-grey);
+            color: var(--light-grey);
             opacity: 0.8;
         }
 
         .signup-form button {
             padding: 10px 24px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--charcoal);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.15);
+            color: var(--muted-white);
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
             font-size: 1rem;
-            /* Matched to input size */
             transition: background 0.3s ease;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .signup-form button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(219, 228, 231, 0.25);
         }
 
         /* --- FOOTER --- */
         footer {
-            /* Increased bottom padding to prevent system UI (Safri bar) from covering text */
             padding: 2rem 1rem max(120px, env(safe-area-inset-bottom) + 80px) 1rem;
             background-color: transparent;
             display: flex;
@@ -562,11 +521,10 @@
             z-index: 10;
             min-height: 200px;
             margin-top: 100px;
-            /* Ensure footer clips nothing and extends fully */
             width: 100%;
         }
 
-        /* Footer Gradient: Fades background image into icy-blue */
+        /* Footer Gradient */
         footer::before {
             content: "";
             position: absolute;
@@ -576,8 +534,8 @@
             height: calc(100% + 150px);
             background: linear-gradient(to bottom,
                     transparent 0%,
-                    rgba(180, 202, 222, 0.8) 40%,
-                    var(--icy-blue) 100%);
+                    rgba(13, 25, 31, 0.8) 40%,
+                    var(--dark-navy) 100%);
             pointer-events: none;
             z-index: -1;
         }

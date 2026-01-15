@@ -14,19 +14,17 @@
     <meta name="theme-color" content="#B4CADE" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#B4CADE" media="(prefers-color-scheme: dark)">
     <style>
-        /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
+        /* --- CSS VARIABLES - DARK THEME --- */
         :root {
-            --icy-blue: #B4CADE;
-            --slate-grey: #5C7084;
-            --chrome: #E0E0E0;
-            --charcoal: #1A1F23;
+            --dark-navy: #0D191F;
+            --dark-moss: #25231C;
+            --muted-white: #DBE4E7;
+            --light-grey: #BEC7CD;
+            --charcoal: #DBE4E7;
             --white: #FFFFFF;
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(13, 25, 31, 0.6);
+            --glass-border: rgba(219, 228, 231, 0.2);
             --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
-            /* Adds texture */
-            --grain-overlay: url('https://grainy-gradients.vercel.app/noise.svg');
-            /* Adds texture */
         }
 
         /* LOADING OVERLAY STYLES */
@@ -76,32 +74,22 @@
         }
 
         html {
-            background-color: var(--icy-blue);
+            background-color: var(--dark-navy);
         }
 
         body {
             font-family: 'Hubot Sans', sans-serif;
-            background: transparent;
-            color: var(--charcoal);
+            background: var(--dark-navy);
+            color: var(--muted-white);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
         /* Loading Overlay Logic added at end of body */
 
-        /* Fixed background to prevent jitter */
+        /* Fixed background - disabled for dark theme */
         body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('desktop-bg.jpg') no-repeat center center;
-            background-size: cover;
-            opacity: 0.2;
-            z-index: -1;
-            pointer-events: none;
+            display: none;
         }
 
         /* Adds a subtle film grain texture over the whole site */
@@ -139,11 +127,10 @@
         .swiss-mono {
             font-family: 'Hubot Sans', sans-serif;
             font-weight: 300;
-            /* Light weight */
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--slate-grey);
+            color: var(--light-grey);
         }
 
         /* --- NAVIGATION --- */
@@ -156,18 +143,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Floating Capsule Style */
             padding: 12px 24px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(13, 25, 31, 0.8);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(219, 228, 231, 0.15);
             border-radius: 50px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 20px rgba(0, 0, 0, 0.05);
-            color: var(--charcoal);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            color: var(--muted-white);
         }
 
         .logo {
@@ -182,43 +166,39 @@
 
         .cart {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 50px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
+            color: var(--muted-white);
         }
 
         .cart:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.6),
-                0 8px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(219, 228, 231, 0.2);
+            border: 1px solid rgba(219, 228, 231, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-1px);
         }
 
         .hero-btn {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 50px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             margin-bottom: 3rem;
             text-transform: uppercase;
             font-weight: 700;
+            color: var(--muted-white);
         }
 
         .hero-gradient {
@@ -227,7 +207,7 @@
             left: 0;
             width: 100%;
             height: 300px;
-            background: linear-gradient(to bottom, transparent 0%, #B4CADE 100%);
+            background: linear-gradient(to bottom, transparent 0%, var(--dark-navy) 100%);
             pointer-events: none;
             z-index: 10;
         }
@@ -241,27 +221,24 @@
 
         .nav-btn {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 50px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             text-transform: uppercase;
             font-weight: 700;
+            color: var(--muted-white);
         }
 
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.6),
-                0 8px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(219, 228, 231, 0.2);
+            border: 1px solid rgba(219, 228, 231, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-1px);
         }
 
@@ -271,18 +248,12 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(rgba(180, 202, 222, 0.70), rgba(180, 202, 222, 0.70)), url('menu-bg.jpg') no-repeat center center;
-            background-size: cover;
-            /* 70% opacity */
-
-            /* Transition state: Hidden */
+            background: rgba(13, 25, 31, 0.95);
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
             transition: opacity 0.4s ease, visibility 0.4s ease;
-
             display: flex;
-            /* Always flex layout, just toggling opacity */
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -326,7 +297,7 @@
             padding: 2rem;
         }
 
-        /* White diffused circle behind hero content */
+        /* Diffused circle behind hero content */
         .hero::before {
             content: "";
             position: absolute;
@@ -335,7 +306,7 @@
             transform: translate(-50%, -50%);
             width: 120%;
             height: 120%;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 80%);
+            background: radial-gradient(ellipse at center, rgba(37, 35, 28, 0.4) 0%, rgba(13, 25, 31, 0) 80%);
             pointer-events: none;
             z-index: -1;
         }
@@ -360,7 +331,7 @@
 
         .hero h1 {
             font-size: clamp(1.92rem, 6.48vw, 5.2rem);
-            color: var(--charcoal);
+            color: var(--muted-white);
             margin-bottom: 2rem;
             position: relative;
             z-index: 10;
@@ -368,22 +339,22 @@
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--slate-grey);
+            color: var(--light-grey);
             max-width: 400px;
             margin-bottom: 2rem;
         }
 
         /* --- MARQUEE --- */
         .marquee-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(37, 35, 28, 0.5);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            color: var(--charcoal);
+            color: var(--muted-white);
             padding: 1.2rem 0;
             overflow: hidden;
             white-space: nowrap;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(219, 228, 231, 0.1);
+            border-bottom: 1px solid rgba(219, 228, 231, 0.1);
             font-size: 1.1rem;
             letter-spacing: 0.05em;
         }
@@ -583,12 +554,11 @@
         }
 
         .glass-container {
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 228, 231, 0.15);
+            background: rgba(37, 35, 28, 0.5);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 50px;
-            /* Matches hero-btn radius */
             padding: 3rem 4rem;
             width: 100%;
             max-width: 500px;
@@ -597,9 +567,7 @@
             flex-direction: column;
             gap: 1.5rem;
             align-items: center;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .glass-container h3 {
@@ -622,12 +590,11 @@
             width: 100%;
             padding: 12px 20px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--charcoal);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(13, 25, 31, 0.5);
+            color: var(--muted-white);
             font-family: inherit;
             font-size: 16px;
-            /* Prevents zoom on mobile */
             text-transform: uppercase;
             outline: none;
             text-align: center;
@@ -636,42 +603,38 @@
         }
 
         .signup-form input[type="email"]:focus {
-            border-color: rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(219, 228, 231, 0.5);
+            background: rgba(13, 25, 31, 0.7);
         }
 
         .signup-form input::placeholder {
-            color: var(--slate-grey);
+            color: var(--light-grey);
             opacity: 0.8;
         }
 
         .signup-form button {
             padding: 12px 30px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--charcoal);
+            border: 1px solid rgba(219, 228, 231, 0.2);
+            background: rgba(219, 228, 231, 0.15);
+            color: var(--muted-white);
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
             font-size: 0.9rem;
-            /* Matches .nav-btn size */
             transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .signup-form button:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(219, 228, 231, 0.25);
             transform: translateY(-1px);
         }
 
         /* --- FOOTER --- */
         footer {
             padding: 2rem 2rem 0;
-            background-color: var(--icy-blue);
-            /* border-top: 1px solid var(--chrome); */
+            background-color: var(--dark-navy);
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -840,10 +803,10 @@
         }
 
         .benefit-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(37, 35, 28, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(219, 228, 231, 0.15);
             padding: 2.5rem;
             border-radius: 50px;
             transition: all 0.3s ease;
@@ -854,23 +817,23 @@
 
         .benefit-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(37, 35, 28, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(219, 228, 231, 0.3);
         }
 
         .benefit-title {
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--charcoal);
+            color: var(--muted-white);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .benefit-desc {
             font-size: 0.95rem;
-            color: var(--slate-grey);
+            color: var(--light-grey);
             line-height: 1.6;
         }
 
