@@ -10,6 +10,43 @@
     <meta name="theme-color" content="#B4CADE" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#B4CADE" media="(prefers-color-scheme: dark)">
     <style>
+        /* --- FONT DEFINITIONS --- */
+        @font-face {
+            font-family: 'Area Extended';
+            src: url('fonts/AreaExtended-Light.woff2') format('woff2'),
+                url('fonts/AreaExtended-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Area Extended';
+            src: url('fonts/AreaExtended-Regular.woff2') format('woff2'),
+                url('fonts/AreaExtended-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Area Extended';
+            src: url('fonts/AreaExtended-Semibold.woff2') format('woff2'),
+                url('fonts/AreaExtended-Semibold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Area Extended';
+            src: url('fonts/AreaExtended-Bold.woff2') format('woff2'),
+                url('fonts/AreaExtended-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
         /* --- CSS VARIABLES BASED ON YOUR MOODBOARD --- */
         :root {
             --icy-blue: #B4CADE;
@@ -58,7 +95,7 @@
         }
 
         .loader-text {
-            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-family: 'Area Extended', 'Helvetica Neue', Arial, sans-serif;
             font-weight: 700;
             font-size: 15vw;
             color: white;
@@ -79,7 +116,7 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-family: 'Area Extended', 'Helvetica Neue', Arial, sans-serif;
             background: transparent;
             color: var(--charcoal);
             overflow-x: hidden;
@@ -136,7 +173,7 @@
         }
 
         .swiss-mono {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Area Extended', 'Helvetica Neue', Arial, sans-serif;
             font-weight: 300;
             /* Light weight */
             font-size: 0.75rem;
@@ -394,7 +431,7 @@
 
         .marquee-content span {
             margin-right: 4rem;
-            font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+            font-family: 'Area Extended', 'Helvetica Neue', Arial, sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.9rem;
