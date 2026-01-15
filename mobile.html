@@ -163,9 +163,13 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 20px;
+            width: auto;
         }
 
         .nav-btn {
@@ -586,15 +590,16 @@
         }
 
         .footer-logo {
-            font-size: 24vw;
-            /* 20% increase from 20vw */
+            display: flex;
+            align-items: flex-end;
             margin-bottom: -2vw;
-            line-height: 1;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.4);
-            /* Translucent white layer (40% opacity) */
-            letter-spacing: -0.05em;
             pointer-events: none;
+        }
+
+        .footer-logo img {
+            height: 18vw;
+            width: auto;
+            opacity: 0.4;
         }
 
         .footer-links {
@@ -750,7 +755,7 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">c.</div>
+        <div class="logo"><img src="creia-logo.png" alt="creia"></div>
         <div class="nav-btn" onclick="toggleMenu()">WHY CREATINE?</div>
     </nav>
 
@@ -873,7 +878,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">creia.</div>
+        <div class="footer-logo"><img src="creia-logo.png" alt="creia"></div>
         <div class="footer-links">
             <a href="mailto:zuber@getcreia.com" class="nav-btn">Contact</a>
         </div>
