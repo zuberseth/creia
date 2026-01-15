@@ -176,18 +176,8 @@
             /* Prevent horizontal scroll from pseudo-element */
         }
 
-        /* Diffused circle behind hero content */
         .hero::before {
-            content: "";
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse at center, rgba(13, 25, 31, 0.5) 0%, rgba(13, 25, 31, 0) 50%);
-            pointer-events: none;
-            z-index: -1;
+            display: none;
         }
 
         /* --- MAIN PAGE BENEFITS SECTION --- */
